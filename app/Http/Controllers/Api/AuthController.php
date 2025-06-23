@@ -17,13 +17,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            "nim_nip"=> "required|exists:users,nim_nip",
+            "email"=> "required|email|exists:users,email",
             "password" => "required"
         ]);
         if(!Auth::attempt($credentials)){
-            return $this->errorResponse("NIM NIP atau password salah",Response::HTTP_UNAUTHORIZED);
+            return $this->errorResponse("email atau password salah",Response::HTTP_UNAUTHORIZED);
         }
-        $user = User::where("nim_nip","=",$credentials["nim_nip"])->first();
+        $user = User::where("email","=",$credentials["email"])->first();
         $token = $user->createToken("auth_token")->plainTextToken;
         $data = [
             "token" => $token,
