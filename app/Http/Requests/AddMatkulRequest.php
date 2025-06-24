@@ -25,8 +25,7 @@ class AddMatkulRequest extends FormRequest
             "nama_matkul" => "required|string",
             "kode_matkul" => "required|unique:mata_kuliah,kode_matkul",
             "pengajar_id" => "required|exists:users,id",
-            "hari" => "required|string",
-            "jam" => "required|string",
+            "semester" => "required|integer",
         ];
     }
 }

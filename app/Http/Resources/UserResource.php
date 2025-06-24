@@ -20,8 +20,12 @@ class UserResource extends JsonResource
             "role" => $this->role,
             $this->mergeWhen($this->role === 'mahasiswa', [
                 'nim' => $this->nim_nip,
-                'kelas' => $this->kelas,
-                'jurusan' => $this->jurusan,
+                'kelas' => $this->whenLoaded('kelas',function(){
+                    return $this->kelas ? $this->kelas->nama_kelas :null;
+                }),
+                'jurusan' => $this->whenLoaded('jurusan',function(){
+                    return $this->jurusan ? $this->jurusan->nama_jurusan : null;
+                }),
             ]),
             $this->mergeWhen($this->role === 'dosen', [
                 'nip' => $this->nim_nip,

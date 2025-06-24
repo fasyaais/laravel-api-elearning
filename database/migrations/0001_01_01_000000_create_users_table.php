@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Jurusan;
+use App\Models\Kelas;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,8 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->enum("role",['mahasiswa', 'dosen', 'admin']);
             $table->string('nim_nip')->nullable();
-            $table->string('kelas')->nullable();
-            $table->string('jurusan')->nullable();
+            $table->foreignIdFor(Kelas::class)->nullable()->constrained()->onDelete('set null');
+            $table->foreignIdFor(Jurusan::class)->nullable()->constrained()->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

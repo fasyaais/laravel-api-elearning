@@ -26,8 +26,8 @@ class StoreMahasiswaRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'nim' => 'required|string|unique:users,nim_nip',
-            'kelas' => 'required|string',
-            'jurusan' => 'required|string',
+            'kelas_id' => 'required|exists:kelas',
+            'jurusan_id' => 'required|exists:jurusan',
         ];
     }
 }
