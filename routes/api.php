@@ -16,6 +16,8 @@ Route::middleware(["auth:sanctum","role:admin"])->prefix("admin")->group(functio
     Route::post('tambah-dosen', [AdminController::class,'addDosen']);
     Route::post('tambah-matakul', [AdminController::class,'addMatkul']);
     Route::get('mahasiswa', [AdminController::class,'showAllMahasiswa']);
+    Route::get('dosen', [AdminController::class,'showAllDosen']);
+    Route::get('admin', [AdminController::class,'showAllAdmin']);
 });
 
 Route::middleware(["auth:sanctum","role:dosen"])->prefix("dosen")->group(function(){
